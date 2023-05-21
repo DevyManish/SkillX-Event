@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,18 +12,71 @@
 
 
     <title>SkillX</title>
+<!--
 
-    <!-- Additional CSS Files -->
+ART FACTORY
+
+https://templatemo.com/tm-537-art-fac -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="assets/css/templatemo-art-factory.css">
     <link rel="stylesheet" type="text/css" href="assets/css/owl-carousel.css">
     <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    </head>
-    
-    <body>
-    
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            overflow-y: auto;
+            /* Enable scrolling within the form */
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Stop body scroll when modal is open */
+        .stop-scrolling {
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
@@ -31,10 +84,10 @@
             <div></div>
             <div></div>
         </div>
-    </div>  
+    </div>
     <!-- ***** Preloader End ***** -->
-    
-    
+
+
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
         <div class="container">
@@ -47,7 +100,7 @@
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="#welcome" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="#about">Apply</a></li>
+                            <!-- <li class="scroll-to-section"><a href="#about">Apply</a></li> -->
                             <li class="scroll-to-section"><a href="#services">About</a></li>
                             <li class="scroll-to-section"><a href="#frequently-question">Frequently Questions</a></li>
                             <!-- <li class="submenu">
@@ -80,25 +133,85 @@
         <div class="header-text">
             <div class="container">
                 <div class="row">
-                    <div class="left-text col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <div class="left-text col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
                         <h1>Ignite Innovation, Unleash the Future</h1>
-                        <p>Discover the transformative power of creativity and witness the awe-inspiring innovations that will redefine our world</p>
-                        <!-- <a href="#about" class="main-button-slider">Find Out More</a> -->
-                        <button class="btn-hover color-2">Apply</button>
-                        
+                        <p>Discover the transformative power of creativity and witness the awe-inspiring innovations
+                            that will redefine our world</p>
+                        <button class="btn-hover color-2" onclick="openModal()">Apply</button>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                        <img src="assets/images/slider-icon.png" class="rounded img-fluid d-block mx-auto" alt="First Vector Graphic">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                        <img src="assets/images/slider-icon.png" class="rounded img-fluid d-block mx-auto"
+                            alt="First Vector Graphic">
                     </div>
                 </div>
             </div>
         </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3>Enter your details:</h3>
+                <form id="myFormContent" target="myIframe" action="your-form-action-url" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" class="form-control" id="address" name="address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" class="form-control" id="age" name="age" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select class="form-control" id="gender" name="gender" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">School:</label>
+                        <input type="text" class="form-control" id="school" name="school" required>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <iframe id="myIframe" name="myIframe" style="display:none"></iframe>
+
+        <!-- Include Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+            function openModal() {
+                document.getElementById("myModal").style.display = "block";
+                document.getElementById("myIframe").src = "";
+                document.body.classList.add("stop-scrolling");
+            }
+
+            function closeModal() {
+                document.getElementById("myModal").style.display = "none";
+                document.getElementById("myIframe").src = "";
+                document.body.classList.remove("stop-scrolling");
+            }
+        </script>
         <!-- ***** Header Text End ***** -->
     </div>
     <!-- ***** Welcome Area End ***** -->
 
 
-    <!-- ***** Apply Section Start ***** -->
+    <!-- ***** Features Big Item Start ***** -->
     <section class="section" id="about">
         <div class="container">
             <div class="row">
