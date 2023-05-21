@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,7 +12,7 @@
 
 
     <title>SkillX</title>
-<!--
+    <!--
 
 ART FACTORY
 
@@ -25,11 +25,61 @@ https://templatemo.com/tm-537-art-factory
     <link rel="stylesheet" type="text/css" href="assets/css/templatemo-art-factory.css">
     <link rel="stylesheet" type="text/css" href="assets/css/owl-carousel.css">
     <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    </head>
-    
-    <body>
-    
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            overflow-y: auto;
+            /* Enable scrolling within the form */
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Stop body scroll when modal is open */
+        .stop-scrolling {
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
@@ -37,10 +87,10 @@ https://templatemo.com/tm-537-art-factory
             <div></div>
             <div></div>
         </div>
-    </div>  
+    </div>
     <!-- ***** Preloader End ***** -->
-    
-    
+
+
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
         <div class="container">
@@ -53,7 +103,7 @@ https://templatemo.com/tm-537-art-factory
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="#welcome" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="#about">Apply</a></li>
+                            <!-- <li class="scroll-to-section"><a href="#about">Apply</a></li> -->
                             <li class="scroll-to-section"><a href="#services">About</a></li>
                             <li class="scroll-to-section"><a href="#frequently-question">Frequently Questions</a></li>
                             <!-- <li class="submenu">
@@ -86,19 +136,79 @@ https://templatemo.com/tm-537-art-factory
         <div class="header-text">
             <div class="container">
                 <div class="row">
-                    <div class="left-text col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <div class="left-text col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
                         <h1>Ignite Innovation, Unleash the Future</h1>
-                        <p>Discover the transformative power of creativity and witness the awe-inspiring innovations that will redefine our world</p>
-                        <!-- <a href="#about" class="main-button-slider">Find Out More</a> -->
-                        <button class="btn-hover color-2">Apply</button>
-                        
+                        <p>Discover the transformative power of creativity and witness the awe-inspiring innovations
+                            that will redefine our world</p>
+                        <button class="btn-hover color-2" onclick="openModal()">Apply</button>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                        <img src="assets/images/slider-icon.png" class="rounded img-fluid d-block mx-auto" alt="First Vector Graphic">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                        <img src="assets/images/slider-icon.png" class="rounded img-fluid d-block mx-auto"
+                            alt="First Vector Graphic">
                     </div>
                 </div>
             </div>
         </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3>Enter your details:</h3>
+                <form id="myFormContent" target="myIframe" action="your-form-action-url" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" class="form-control" id="address" name="address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" class="form-control" id="age" name="age" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select class="form-control" id="gender" name="gender" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">School:</label>
+                        <input type="text" class="form-control" id="school" name="school" required>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <iframe id="myIframe" name="myIframe" style="display:none"></iframe>
+
+        <!-- Include Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+            function openModal() {
+                document.getElementById("myModal").style.display = "block";
+                document.getElementById("myIframe").src = "";
+                document.body.classList.add("stop-scrolling");
+            }
+
+            function closeModal() {
+                document.getElementById("myModal").style.display = "none";
+                document.getElementById("myIframe").src = "";
+                document.body.classList.remove("stop-scrolling");
+            }
+        </script>
         <!-- ***** Header Text End ***** -->
     </div>
     <!-- ***** Welcome Area End ***** -->
@@ -108,7 +218,8 @@ https://templatemo.com/tm-537-art-factory
     <section class="section" id="about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-7 col-md-12 col-sm-12" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                <div class="col-lg-7 col-md-12 col-sm-12"
+                    data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
                     <img src="assets/images/left-image.png" class="rounded img-fluid d-block mx-auto" alt="App">
                 </div>
                 <div class="right-text col-lg-5 col-md-12 col-sm-12 mobile-top-fix">
@@ -116,8 +227,11 @@ https://templatemo.com/tm-537-art-factory
                         <h5>Vivamus sodales nisi id ante molestie venenatis</h5>
                     </div>
                     <div class="left-text">
-                        <p>This template is <a href="#">last updated on 20 August 2019 </a>for main menu drop-down arrow and sub menu text color. Duis auctor dolor eu scelerisque vestibulum. Vestibulum lacinia, nisl sit amet tristique condimentum. <br><br>
-                        Sed a consequat velit. Morbi lectus sapien, vestibulum et sapien sit amet, ultrices malesuada odio. Donec non quam euismod, mattis dui a, ultrices nisi.</p>
+                        <p>This template is <a href="#">last updated on 20 August 2019 </a>for main menu drop-down arrow
+                            and sub menu text color. Duis auctor dolor eu scelerisque vestibulum. Vestibulum lacinia,
+                            nisl sit amet tristique condimentum. <br><br>
+                            Sed a consequat velit. Morbi lectus sapien, vestibulum et sapien sit amet, ultrices
+                            malesuada odio. Donec non quam euismod, mattis dui a, ultrices nisi.</p>
                         <a href="#about2" class="main-button">Discover More</a>
                     </div>
                 </div>
@@ -140,7 +254,8 @@ https://templatemo.com/tm-537-art-factory
                     <div class="left-heading">
                         <h5>Curabitur aliquam eget tellus id porta</h5>
                     </div>
-                    <p>Proin justo sapien, posuere suscipit tortor in, fermentum mattis elit. Aenean in feugiat purus.</p>
+                    <p>Proin justo sapien, posuere suscipit tortor in, fermentum mattis elit. Aenean in feugiat purus.
+                    </p>
                     <ul>
                         <li>
                             <img src="assets/images/about-icon-01.png" alt="">
@@ -153,19 +268,22 @@ https://templatemo.com/tm-537-art-factory
                             <img src="assets/images/about-icon-02.png" alt="">
                             <div class="text">
                                 <h6>Donec consequat commodo purus</h6>
-                                <p>You have no right to re-distribute this template as a downloadable ZIP file on any website.</p>
+                                <p>You have no right to re-distribute this template as a downloadable ZIP file on any
+                                    website.</p>
                             </div>
                         </li>
                         <li>
                             <img src="assets/images/about-icon-03.png" alt="">
                             <div class="text">
                                 <h6>Sed placerat sollicitudin mauris</h6>
-                                <p>If you have any question or comment, please <a rel="nofollow" href="https://templatemo.com/contact">contact</a> us on TemplateMo.</p>
+                                <p>If you have any question or comment, please <a rel="nofollow"
+                                        href="https://templatemo.com/contact">contact</a> us on TemplateMo.</p>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big"
+                    data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
                     <img src="assets/images/right-image.png" class="rounded img-fluid d-block mx-auto" alt="App">
                 </div>
             </div>
@@ -184,7 +302,8 @@ https://templatemo.com/tm-537-art-factory
                             <i><img src="assets/images/service-icon-01.png" alt=""></i>
                         </div>
                         <h5 class="service-title">First Box Service</h5>
-                        <p>Aenean vulputate massa sed neque consectetur, ac fringilla quam aliquet. Sed a enim nec eros tempor cursus at id libero.</p>
+                        <p>Aenean vulputate massa sed neque consectetur, ac fringilla quam aliquet. Sed a enim nec eros
+                            tempor cursus at id libero.</p>
                         <a href="#" class="main-button">Read More</a>
                     </div>
                     <div class="item service-item">
@@ -192,7 +311,8 @@ https://templatemo.com/tm-537-art-factory
                             <i><img src="assets/images/service-icon-02.png" alt=""></i>
                         </div>
                         <h5 class="service-title">Second Box Title</h5>
-                        <p>Pellentesque vitae urna ut nisi viverra tristique quis at dolor. In non sodales dolor, id egestas quam. Aliquam erat volutpat. </p>
+                        <p>Pellentesque vitae urna ut nisi viverra tristique quis at dolor. In non sodales dolor, id
+                            egestas quam. Aliquam erat volutpat. </p>
                         <a href="#" class="main-button">Discover More</a>
                     </div>
                     <div class="item service-item">
@@ -200,7 +320,8 @@ https://templatemo.com/tm-537-art-factory
                             <i><img src="assets/images/service-icon-03.png" alt=""></i>
                         </div>
                         <h5 class="service-title">Third Title Box</h5>
-                        <p>Quisque finibus libero augue, in ultrices quam dictum id. Aliquam quis tellus sit amet urna tincidunt bibendum.</p>
+                        <p>Quisque finibus libero augue, in ultrices quam dictum id. Aliquam quis tellus sit amet urna
+                            tincidunt bibendum.</p>
                         <a href="#" class="main-button">More Detail</a>
                     </div>
                     <div class="item service-item">
@@ -208,7 +329,8 @@ https://templatemo.com/tm-537-art-factory
                             <i><img src="assets/images/service-icon-02.png" alt=""></i>
                         </div>
                         <h5 class="service-title">Fourth Service Box</h5>
-                        <p>Fusce sollicitudin feugiat risus, tempus faucibus arcu blandit nec. Duis auctor dolor eu scelerisque vestibulum.</p>
+                        <p>Fusce sollicitudin feugiat risus, tempus faucibus arcu blandit nec. Duis auctor dolor eu
+                            scelerisque vestibulum.</p>
                         <a href="#" class="main-button">Read More</a>
                     </div>
                     <div class="item service-item">
@@ -216,7 +338,8 @@ https://templatemo.com/tm-537-art-factory
                             <i><img src="assets/images/service-icon-01.png" alt=""></i>
                         </div>
                         <h5 class="service-title">Fifth Service Title</h5>
-                        <p>Curabitur aliquam eget tellus id porta. Proin justo sapien, posuere suscipit tortor in, fermentum mattis elit.</p>
+                        <p>Curabitur aliquam eget tellus id porta. Proin justo sapien, posuere suscipit tortor in,
+                            fermentum mattis elit.</p>
                         <a href="#" class="main-button">Discover</a>
                     </div>
                     <div class="item service-item">
@@ -224,7 +347,8 @@ https://templatemo.com/tm-537-art-factory
                             <i><img src="assets/images/service-icon-03.png" alt=""></i>
                         </div>
                         <h5 class="service-title">Sixth Box Title</h5>
-                        <p>Ut nibh velit, aliquam vitae pellentesque nec, convallis vitae lacus. Aliquam porttitor urna ut pellentesque.</p>
+                        <p>Ut nibh velit, aliquam vitae pellentesque nec, convallis vitae lacus. Aliquam porttitor urna
+                            ut pellentesque.</p>
                         <a href="#" class="main-button">Detail</a>
                     </div>
                     <div class="item service-item">
@@ -232,7 +356,8 @@ https://templatemo.com/tm-537-art-factory
                             <i><img src="assets/images/service-icon-01.png" alt=""></i>
                         </div>
                         <h5 class="service-title">Seventh Title Box</h5>
-                        <p>Sed a consequat velit. Morbi lectus sapien, vestibulum et sapien sit amet, ultrices malesuada odio. Donec non quam.</p>
+                        <p>Sed a consequat velit. Morbi lectus sapien, vestibulum et sapien sit amet, ultrices malesuada
+                            odio. Donec non quam.</p>
                         <a href="#" class="main-button">Read More</a>
                     </div>
                 </div>
@@ -254,7 +379,8 @@ https://templatemo.com/tm-537-art-factory
                 </div>
                 <div class="offset-lg-3 col-lg-6">
                     <div class="section-heading">
-                        <p>Step into a world of limitless possibilities at SkillX!<br>Join Our event dedicated to empowering innovation and shaping tomorrow.</p>
+                        <p>Step into a world of limitless possibilities at SkillX!<br>Join Our event dedicated to
+                            empowering innovation and shaping tomorrow.</p>
                     </div>
                 </div>
             </div>
@@ -264,8 +390,19 @@ https://templatemo.com/tm-537-art-factory
                 <div class="left-text col-lg-6 col-md-6 col-sm-12">
                     <h5>"Inspire. Innovate. Illuminate."</h5>
                     <div class="accordion-text">
-                        <p>Welcome to SkillX, an extraordinary event where engineering students showcase their ideas and models on new technology and innovation. Designed specifically for school students, SkillX offers a unique opportunity to learn about emerging technologies such as cloud, web, and Android development.<br>At SkillX, get ready to be inspired as engineering students present their groundbreaking concepts and revolutionary models. Immerse yourself in the world of innovation and witness the power of creativity firsthand. From cloud solutions to web development and Android applications, SkillX presents a diverse range of cutting-edge technologies.<br>Engage with interactive displays and experience hands-on demonstrations.<br>Join us at SkillX and become part of an educational and inspiring journey. Explore the endless possibilities of the technological world and discover how you can contribute to shaping the future. Get ready to be inspired, innovate, and illuminate your path to success.</p>
-            
+                        <p>Welcome to SkillX, an extraordinary event where engineering students showcase their ideas and
+                            models on new technology and innovation. Designed specifically for school students, SkillX
+                            offers a unique opportunity to learn about emerging technologies such as cloud, web, and
+                            Android development.<br>At SkillX, get ready to be inspired as engineering students present
+                            their groundbreaking concepts and revolutionary models. Immerse yourself in the world of
+                            innovation and witness the power of creativity firsthand. From cloud solutions to web
+                            development and Android applications, SkillX presents a diverse range of cutting-edge
+                            technologies.<br>Engage with interactive displays and experience hands-on
+                            demonstrations.<br>Join us at SkillX and become part of an educational and inspiring
+                            journey. Explore the endless possibilities of the technological world and discover how you
+                            can contribute to shaping the future. Get ready to be inspired, innovate, and illuminate
+                            your path to success.</p>
+
                         <span>Email: <a href="#">email@company.com</a><br></span>
                         <a href="#contact-us" class="main-button">Contact Us</a>
                     </div>
@@ -281,9 +418,12 @@ https://templatemo.com/tm-537-art-factory
                             </div>
                             <div class="accordion-body">
                                 <div class="content">
-                                    <p>SkillX is a dynamic and engaging event that showcases the ideas and models of engineering students, focusing on new technology and innovation.
-                                    <br><br>
-                                    It provides a platform for students to demonstrate their skills and offers a unique learning experience for attendees.</p>
+                                    <p>SkillX is a dynamic and engaging event that showcases the ideas and models of
+                                        engineering students, focusing on new technology and innovation.
+                                        <br><br>
+                                        It provides a platform for students to demonstrate their skills and offers a
+                                        unique learning experience for attendees.
+                                    </p>
                                 </div>
                             </div>
                         </article>
@@ -296,9 +436,12 @@ https://templatemo.com/tm-537-art-factory
                             </div>
                             <div class="accordion-body">
                                 <div class="content">
-                                    <p>SkillX is open to school students who are eager to learn about emerging technologies and witness the creative innovations of engineering students. 
-                                    <br><br>
-                                    The event encourages curiosity and participation from all who have an interest in the technological advancements shaping our world..</p>
+                                    <p>SkillX is open to school students who are eager to learn about emerging
+                                        technologies and witness the creative innovations of engineering students.
+                                        <br><br>
+                                        The event encourages curiosity and participation from all who have an interest
+                                        in the technological advancements shaping our world..
+                                    </p>
                                 </div>
                             </div>
                         </article>
@@ -311,9 +454,14 @@ https://templatemo.com/tm-537-art-factory
                             </div>
                             <div class="accordion-body">
                                 <div class="content">
-                                    <p>Attending SkillX allows school students to learn about cutting-edge technologies and innovative concepts directly from engineering students.
-                                    <br><br>
-                                    It serves as a source of inspiration, nurturing a passion for innovation and providing a glimpse into the future of technology. Additionally, it offers a networking opportunity for students to connect with like-minded individuals and potential mentors in the field of technology and engineering.</p>
+                                    <p>Attending SkillX allows school students to learn about cutting-edge technologies
+                                        and innovative concepts directly from engineering students.
+                                        <br><br>
+                                        It serves as a source of inspiration, nurturing a passion for innovation and
+                                        providing a glimpse into the future of technology. Additionally, it offers a
+                                        networking opportunity for students to connect with like-minded individuals and
+                                        potential mentors in the field of technology and engineering.
+                                    </p>
                                 </div>
                             </div>
                         </article>
@@ -326,9 +474,13 @@ https://templatemo.com/tm-537-art-factory
                             </div>
                             <div class="accordion-body">
                                 <div class="content">
-                                    <p>If you're an engineering student interested in showcasing your ideas and models at SkillX, you can contact the event organizers for more information on registration and participation details. 
-                                    <br><br>
-                                    School students can attend the event by registering or coordinating with their educational institutions..</p>
+                                    <p>If you're an engineering student interested in showcasing your ideas and models
+                                        at SkillX, you can contact the event organizers for more information on
+                                        registration and participation details.
+                                        <br><br>
+                                        School students can attend the event by registering or coordinating with their
+                                        educational institutions..
+                                    </p>
                                 </div>
                             </div>
                         </article>
@@ -341,9 +493,14 @@ https://templatemo.com/tm-537-art-factory
                             </div>
                             <div class="accordion-body">
                                 <div class="content">
-                                    <p>At SkillX, you can expect to be inspired by groundbreaking ideas, models, and projects. Through interactive displays, presentations, and hands-on demonstrations, you'll have the opportunity to explore new technologies like cloud, web, and Android development. 
-                                    <br><br>
-                                    Engaging with passionate engineering students, you'll gain insights into their expertise and the limitless possibilities of the technological world.</p>
+                                    <p>At SkillX, you can expect to be inspired by groundbreaking ideas, models, and
+                                        projects. Through interactive displays, presentations, and hands-on
+                                        demonstrations, you'll have the opportunity to explore new technologies like
+                                        cloud, web, and Android development.
+                                        <br><br>
+                                        Engaging with passionate engineering students, you'll gain insights into their
+                                        expertise and the limitless possibilities of the technological world.
+                                    </p>
                                 </div>
                             </div>
                         </article>
@@ -356,7 +513,9 @@ https://templatemo.com/tm-537-art-factory
                             </div>
                             <div class="accordion-body">
                                 <div class="content">
-                                    <p>Suspendisse potenti. Ut dapibus leo ut massa vulputate semper. Pellentesque maximus lorem sed elit imperdiet mattis. Duis posuere mauris ut eros rutrum sodales. Aliquam erat volutpat.</p>
+                                    <p>Suspendisse potenti. Ut dapibus leo ut massa vulputate semper. Pellentesque
+                                        maximus lorem sed elit imperdiet mattis. Duis posuere mauris ut eros rutrum
+                                        sodales. Aliquam erat volutpat.</p>
                                 </div>
                             </div>
                         </article>
@@ -375,13 +534,15 @@ https://templatemo.com/tm-537-art-factory
                 <!-- ***** Contact Map Start ***** -->
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div id="map">
-                      <!-- How to change your own map point
+                        <!-- How to change your own map point
                            1. Go to Google Maps
                            2. Click on your location point
                            3. Click "Share" and choose "Embed map" tab
                            4. Copy only URL and paste it within the src="" field below
                     -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3681.4067483041467!2d88.37640101496142!3d22.67589738512971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89c46c06efd83%3A0x36a29a26ce825e99!2sJIS%20UNIVERSITY!5e0!3m2!1sen!2sin!4v1684657031740!5m2!1sen!2sin" width="100%" height="500px" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3681.4067483041467!2d88.37640101496142!3d22.67589738512971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89c46c06efd83%3A0x36a29a26ce825e99!2sJIS%20UNIVERSITY!5e0!3m2!1sen!2sin!4v1684657031740!5m2!1sen!2sin"
+                            width="100%" height="500px" frameborder="0" style="border:0" allowfullscreen></iframe>
                     </div>
                 </div>
                 <!-- ***** Contact Map End ***** -->
@@ -390,28 +551,31 @@ https://templatemo.com/tm-537-art-factory
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="contact-form">
                         <form id="contact" action="" method="post">
-                          <div class="row">
-                            <div class="col-md-6 col-sm-12">
-                              <fieldset>
-                                <input name="name" type="text" id="name" placeholder="Full Name" required="" class="contact-field">
-                              </fieldset>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <fieldset>
+                                        <input name="name" type="text" id="name" placeholder="Full Name" required=""
+                                            class="contact-field">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <fieldset>
+                                        <input name="email" type="text" id="email" placeholder="E-mail" required=""
+                                            class="contact-field">
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        <textarea name="message" rows="6" id="message" placeholder="Your Message"
+                                            required="" class="contact-field"></textarea>
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        <button type="submit" id="form-submit" class="main-button">Send It</button>
+                                    </fieldset>
+                                </div>
                             </div>
-                            <div class="col-md-6 col-sm-12">
-                              <fieldset>
-                                <input name="email" type="text" id="email" placeholder="E-mail" required="" class="contact-field">
-                              </fieldset>
-                            </div>
-                            <div class="col-lg-12">
-                              <fieldset>
-                                <textarea name="message" rows="6" id="message" placeholder="Your Message" required="" class="contact-field"></textarea>
-                              </fieldset>
-                            </div>
-                            <div class="col-lg-12">
-                              <fieldset>
-                                <button type="submit" id="form-submit" class="main-button">Send It</button>
-                              </fieldset>
-                            </div>
-                          </div>
                         </form>
                     </div>
                 </div>
@@ -421,15 +585,15 @@ https://templatemo.com/tm-537-art-factory
     </section>
     <!-- ***** Contact Us End ***** -->
 
-    
+
     <!-- ***** Footer Start ***** -->
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-md-12 col-sm-12">
-                    <p class="copyright">Copyright &copy; 2023 
-                
-                  By: <a rel="nofollow" href="https://web-manishgupta.vercel.app/">Lumina Tech</a></p>
+                    <p class="copyright">Copyright &copy; 2023
+
+                        By: <a rel="nofollow" href="https://web-manishgupta.vercel.app/">Lumina Tech</a></p>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12">
                     <ul class="social">
@@ -443,7 +607,7 @@ https://templatemo.com/tm-537-art-factory
             </div>
         </div>
     </footer>
-    
+
     <!-- jQuery -->
     <script src="assets/js/jquery-2.1.0.min.js"></script>
 
@@ -456,10 +620,11 @@ https://templatemo.com/tm-537-art-factory
     <script src="assets/js/scrollreveal.min.js"></script>
     <script src="assets/js/waypoints.min.js"></script>
     <script src="assets/js/jquery.counterup.min.js"></script>
-    <script src="assets/js/imgfix.min.js"></script> 
-    
+    <script src="assets/js/imgfix.min.js"></script>
+
     <!-- Global Init -->
     <script src="assets/js/custom.js"></script>
 
-  </body>
+</body>
+
 </html>
