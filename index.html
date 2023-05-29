@@ -91,6 +91,30 @@
             height: 100%;
             overflow: hidden;
         }
+
+        /* submit button style */
+
+        .loader {
+            pointer-events: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #fff;
+            display: grid;
+            place-content: center;
+            animation: an1 1s ease infinite;
+        }
+
+        @keyframes an1 {
+            0% {
+                transform: rotate(0turn);
+            }
+
+            100% {
+                transform: rotate(1turn);
+            }
+        }
     </style>
 </head>
 
@@ -207,8 +231,18 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">I hereby accept all T&C.</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary save-btn">
                         <span>Submit</span>
+                        <!-- confirm submitted js -->
+                        <script>
+                            save_btn = document.querySelector('.save-btn');
+                            save_btn.onclick = function () {
+                                this.innerHTML = " <div class='loader'></div>";
+                                setTimeout(() => {
+                                    this.innerHTML = "Submitted";
+                                }, 2000);
+                            }
+                        </script>
                     </button>
                 </form>
             </div>
@@ -514,8 +548,12 @@
                             <div class="accordion-body">
                                 <div class="content">
                                     <p style="text-align: justify">
-                                        Attending Codecraft offers a multitude of benefits. It equips you with comprehensive knowledge, practical skills, and the inspiration to take your web development journey to new heights.<br /><br />
-                                        Codecraft will help you to learn the fundamental principles that underpin the web as our experts guide you through the essentials of HTML, CSS, JavaScript, and other foundational technologies. 
+                                        Attending Codecraft offers a multitude of benefits. It equips you with
+                                        comprehensive knowledge, practical skills, and the inspiration to take your web
+                                        development journey to new heights.<br /><br />
+                                        Codecraft will help you to learn the fundamental principles that underpin the
+                                        web as our experts guide you through the essentials of HTML, CSS, JavaScript,
+                                        and other foundational technologies.
                                     </p>
                                 </div>
                             </div>
